@@ -31,6 +31,33 @@ skills/digital-human/
 
 我们只在 NVIDIA DGX Spark 上跑通过，别的电脑没有实测。
 
+## AI 作曲 skill
+
+> 这个 skill 在一首测试歌上从头到尾跑通过一次，样歌在 [examples/ai-song-dushu](examples/ai-song-dushu)。试跑里发现的问题已经改进 skill，改过的脚本大多重新验证过，要用显卡的两处（整版重新渲染、只分离一段）还没有重跑。目前只试过这一首歌，步骤和脚本以后可能还会改。
+
+视频里苏东坡那首歌是我们一点点试出来的，这个 skill 把那些步骤和踩过的坑整理成一条固定的路：先扒一首你喜欢的歌的结构和风格，再填词、写风格描述，用开源模型作曲，挑出最好的那版，再补前奏、念白和结尾。每一步该量什么、量到多少算过关，都写在里面。
+
+```
+skills/ai-song/
+├── SKILL.md            给 Claude Code 的说明书：扒曲、填词、风格描述、作曲、挑版、查漏补缺、交付检查
+├── reference/          模型和许可证、文件格式、踩过的坑、你说一句话它该去量什么
+└── scripts/            分离人声、听写、量速度和调、给乐器打标签、出歌、量每一版、拼接、打分、结尾渐慢
+```
+
+**试听**：[examples/ai-song-dushu](examples/ai-song-dushu) 是一次完整试跑。新开的 Claude Code 会话只拿着这个 skill，照一首西班牙风格的歌，写了李清照「赌书泼茶」的一段主歌和副歌，用 YuE2 作曲，再改字、补前奏和结尾。那里有 40 秒的样歌、歌词和出处、每一步做了什么，还有生成用的参数。
+
+**安装**：和数字人 skill 一样，把 `skills/ai-song` 整个文件夹复制到 Claude Code 的 skills 文件夹，新开一个会话。
+
+**前提**：英伟达显卡；一个能跑 YuE2 的 ComfyUI（要较新的版本，它自带 YuE2 的节点）；ACE-Step 1.5；几个分离人声和听写用的 Python 包；带 rubberband 滤镜的 ffmpeg。这些工具要装在不同的 Python 环境里。缺什么，skill 第一步会帮你查出来，下载地址和大小在 [reference/models.md](skills/ai-song/reference/models.md)。
+
+**用法**：把你喜欢的那首歌的音频给 Claude Code，跟它说「照这首歌的风格，给杜甫写一首 40 秒的歌」。它会先把那首歌扒一遍，给你看一页风格卡，问你几个只有耳朵能答的问题（什么风格、什么乐器、男声还是女声），再和你一起写词。词你确认了，它才开始作曲。
+
+两条规矩：
+- **参考歌只用来分析。** 它的音频、分出来的人声和伴奏、听写稿，只在你自己的电脑上用来量速度、调、段落和句子，不交给任何生成模型，也不拿去翻唱。新歌只学它的结构和风格。
+- **Claude Code 听不见声音。** 乐器和风格叫什么，只有两个来源：打标签的模型（AST、CLAP）给的猜测，和你的耳朵。模型会把吉他听成曼陀林，所以它会把猜测摆出来问你，你答了它才往下写。
+
+我们只在 NVIDIA DGX Spark 上跑通过。
+
 ## 用到的工具和模型
 
 **Claude Code**（Anthropic 的 AI 编程助手）
@@ -67,6 +94,17 @@ skills/digital-human/
 
 每个文件的准确文件名、大小、放哪个文件夹、从哪里下，见 [reference/models.md](skills/digital-human/reference/models.md)。模型文件做脸一套约 31 GB，说话一套约 36 GB；跑的时候要放进显卡能用的内存里。
 
+**作曲**
+- YuE2（M-A-P 开源研究社区）：给歌词和一段风格描述，人声和伴奏一起出来。项目：https://github.com/multimodal-art-projection/YuE ，模型：https://huggingface.co/m-a-p/YuE2-3B 。我们在 ComfyUI 里跑，用的是 ComfyUI 官方打包版里的 `yue2_3b_int8_convrot.safetensors`：https://huggingface.co/Comfy-Org/YuE2
+- ACE-Step 1.5（ACE Studio 和阶跃星辰）：字咬得更清楚，也能在一首现成的歌前后补几小节，我们歌里的前奏就是它补的。GitHub：https://github.com/ace-step/ACE-Step-1.5 ，模型：https://huggingface.co/ACE-Step/Ace-Step1.5 、https://huggingface.co/ACE-Step/acestep-v15-xl-sft
+- 四川话念白：沿用上面的 Qwen3-TTS，用 CustomVoice 模型自带的成都男声 Eric：https://huggingface.co/Qwen/Qwen3-TTS-12Hz-1.7B-CustomVoice
+- 分离人声和伴奏：python-audio-separator（https://github.com/nomadkaraoke/python-audio-separator ），用其中的 BS-RoFormer 模型 `model_bs_roformer_ep_317_sdr_12.9755`
+- 分成人声、鼓、贝斯、其他四层：Demucs（Meta）https://github.com/facebookresearch/demucs 。原仓库已停止维护，作者的分支在 https://github.com/adefossez/demucs
+- 听写和给咬字打分：沿用上面的 Whisper，用 faster-whisper 跑 large-v3-turbo：https://github.com/SYSTRAN/faster-whisper 、https://huggingface.co/mobiuslabsgmbh/faster-whisper-large-v3-turbo
+- 给乐器和风格打标签：AST https://huggingface.co/MIT/ast-finetuned-audioset-10-10-0.4593 ，CLAP https://huggingface.co/laion/clap-htsat-unfused
+
+作曲这套每个文件的文件名、大小、放哪儿，见 [reference/models.md](skills/ai-song/reference/models.md)。YuE2 约 4 GB；ACE-Step 1.5 一套约 28 GB（其中 XL 模型约 19 GB，4B 的语言模型约 8 GB）；分离、听写和打标签的模型加起来约 3.5 GB。整套约 36 GB，两个作曲模型一次只用一个。
+
 ## 硬件
 
 **我们用的**：NVIDIA DGX Spark 官方版。GB10 芯片，20 核 CPU，128 GB 内存（CPU 和显卡共用），4 TB 硬盘，Ubuntu 系统。
@@ -92,4 +130,13 @@ https://www.nvidia.com/en-us/products/workstations/dgx-spark/
 
 这个仓库里的脚本、工作流和文档用 MIT 许可证，见 [LICENSE](LICENSE)。用到的每个模型有自己的许可证，用之前看清楚：比如 InsightFace 的预训练人脸模型只许非商业研究使用，商用要另外授权。
 
-网址最后核对日期：2026 年 10 月 30 日。
+作曲用到的模型（2026 年 11 月 10 日在各自的官方页面上核对）：
+- **YuE2**：代码是 Apache 2.0；模型权重是 CC BY-NC 4.0，也就是非商业许可，另外附了一份给个人创作者的许可。个人用户、内容创作者、以个人身份创作的音乐人，可以免费用这些权重，用它生成的歌可以发布、出售、授权、变现，生成的歌不受权重「非商业」的限制，署名也不是必须的。公司拿权重做商用，要另外找 M-A-P 谈授权。不管谁用，都不能用于违法、有害、欺骗的用途，比如诈骗、骚扰、冒充他人。ComfyUI 的打包版页面同样标的是 CC BY-NC 4.0。
+- **ACE-Step 1.5**：代码和模型都是 MIT，模型页写明生成的音乐可以商用。它用到的 Qwen3-Embedding-0.6B 是 Apache 2.0。
+- **Qwen3-TTS**：代码和 CustomVoice 模型都是 Apache 2.0。
+- **Demucs**：代码是 MIT；预训练模型的许可，官方页面上没有单独写，以模型页为准。
+- **python-audio-separator**：MIT。它下载的 BS-RoFormer 模型，我们没找到原作者写明的许可，以模型页为准。
+- **Whisper large-v3-turbo、faster-whisper**：MIT。
+- **AST**：BSD-3-Clause。**CLAP（clap-htsat-unfused）**：Apache 2.0。
+
+网址最后核对日期：数字人部分 2026 年 10 月 30 日，作曲部分 2026 年 11 月 10 日。

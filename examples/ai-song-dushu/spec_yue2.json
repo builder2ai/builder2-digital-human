@@ -1,0 +1,15 @@
+{
+ "api": "http://127.0.0.1:8190",
+ "checkpoint": "yue2_3b_int8_convrot.safetensors",
+ "output_directory": "<你的 ComfyUI 的 output 文件夹>",
+ "output_prefix": "dushu/",
+ "max_duration": 65.0,
+ "lines_per_row": 1,
+ "shared": {
+  "style": "Flamenco pop ballad with rumba strum, Spanish guitar, 105 BPM, G minor, Phrygian, Andalusian cadence. One young female voice singing in Mandarin Chinese, soulful and intimate in the verse, soaring long notes in the chorus, every word clear. In the verse a solo nylon-string Spanish guitar plays arpeggios and short falsetas over soft palmas; in the chorus rasgueado rumba strumming, cajon and palmas drive the rumba groove. Warm, longing, smiling. No male voice, no rap, no Chinese traditional instruments.",
+  "lyrics": "[verse]\n每回吃过了饭，就坐进归来堂\n炉子上茶正烫，书堆了半面墙\n你伸手指着讲，哪件事，在哪本上\n翻开来对一对，谁说中，谁先尝\n\n[chorus]\n第几页，第几行\n我连想都不用想\n端起杯，笑得直晃\n茶泼进怀里，没喝上\n\n[Instrumental]\n"
+ },
+ "variants": [
+  {"id": "F2_s701", "seed": 701}
+ ]
+}
