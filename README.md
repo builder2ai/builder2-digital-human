@@ -5,6 +5,10 @@
 - 视频：YouTube 频道 https://www.youtube.com/@builder2ai ，第 1 期 https://www.youtube.com/watch?v=jbGZmQ7aktI
 - 王渔鱼是 AI 数字人，不是真人。视频里的人物、声音和画面都是 AI 生成的。
 
+## 古人说唱 MV（下集）：MiniMax H3 全家桶
+
+从一幅古画让苏东坡出道：用 MiniMax H3-Image 参考图生图，用 H3 / H3 Flash 图 + 音频生视频，再用 Claude Code 剪成 MV。三个 ComfyUI 工作流我们都跑通了，可以直接下载；模型下载地址、放哪个文件夹、参数和提示词模板都在 [h3-mv](h3-mv/README.md)。
+
 ## 数字人制作 skill
 
 skill 就是写给 Claude Code 的一份说明书，连着脚本和工作流一起。里面写的就是视频里那条路：用文字写脸、用文字设计声音、让它开口说话，每一步该量什么、量到多少算过关。里面没有任何真人的脸和声音，你的数字人要从文字开始写。

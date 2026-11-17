@@ -1,0 +1,2017 @@
+{
+ "id": "8e79ee97-6bdf-403b-9aaa-656062cb8c9a",
+ "revision": 0,
+ "last_node_id": 24,
+ "last_link_id": 21,
+ "nodes": [
+  {
+   "id": 1,
+   "type": "HyperFlowLoader",
+   "pos": [
+    490,
+    260
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 0,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "unet_name",
+     "locked": null,
+     "name": "unet_name",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "unet_name"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "weights_in",
+     "locked": null,
+     "name": "weights_in",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "weights_in"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "MODEL",
+     "locked": null,
+     "name": "MODEL",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "MODEL",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      7,
+      8
+     ]
+    }
+   ],
+   "title": "H3 Flash 模型（INT8，不用加速 LoRA）",
+   "properties": {
+    "Node name for S&R": "HyperFlowLoader"
+   },
+   "widgets_values": [
+    "minimax_h3_ref2va_hyperflow_flash_14b-int8_convrot.safetensors",
+    "auto"
+   ],
+   "widgets_values_named": {
+    "unet_name": "minimax_h3_ref2va_hyperflow_flash_14b-int8_convrot.safetensors",
+    "weights_in": "auto"
+   }
+  },
+  {
+   "id": 2,
+   "type": "CLIPLoader",
+   "pos": [
+    490,
+    402
+   ],
+   "size": [
+    340,
+    106
+   ],
+   "flags": {},
+   "order": 1,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "clip_name",
+     "locked": null,
+     "name": "clip_name",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "clip_name"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "type",
+     "locked": null,
+     "name": "type",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "type"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "device",
+     "locked": null,
+     "name": "device",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "device"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "CLIP",
+     "locked": null,
+     "name": "CLIP",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "CLIP",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      1
+     ]
+    }
+   ],
+   "title": "文本编码器（读懂提示词）",
+   "properties": {
+    "Node name for S&R": "CLIPLoader"
+   },
+   "widgets_values": [
+    "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "minimax",
+    "default"
+   ],
+   "widgets_values_named": {
+    "clip_name": "qwen3vl_32b_minimax_h3_nvfp4_awq.safetensors",
+    "type": "minimax",
+    "device": "default"
+   }
+  },
+  {
+   "id": 3,
+   "type": "VAELoader",
+   "pos": [
+    490,
+    568
+   ],
+   "size": [
+    340,
+    58
+   ],
+   "flags": {},
+   "order": 2,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "vae_name",
+     "locked": null,
+     "name": "vae_name",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "vae_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "VAE",
+     "locked": null,
+     "name": "VAE",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "VAE",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      2,
+      16
+     ]
+    }
+   ],
+   "title": "视频画面解码器",
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_video_vae_fp16.safetensors"
+   ],
+   "widgets_values_named": {
+    "vae_name": "minimax_h3_video_vae_fp16.safetensors"
+   }
+  },
+  {
+   "id": 4,
+   "type": "VAELoader",
+   "pos": [
+    490,
+    686
+   ],
+   "size": [
+    340,
+    58
+   ],
+   "flags": {},
+   "order": 3,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "vae_name",
+     "locked": null,
+     "name": "vae_name",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "vae_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "VAE",
+     "locked": null,
+     "name": "VAE",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "VAE",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      3,
+      18
+     ]
+    }
+   ],
+   "title": "视频声音解码器",
+   "properties": {
+    "Node name for S&R": "VAELoader"
+   },
+   "widgets_values": [
+    "minimax_h3_audio_vae_fp32.safetensors"
+   ],
+   "widgets_values_named": {
+    "vae_name": "minimax_h3_audio_vae_fp32.safetensors"
+   }
+  },
+  {
+   "id": 5,
+   "type": "MiniMaxH3ReferenceToVideo",
+   "pos": [
+    920,
+    260
+   ],
+   "size": [
+    560,
+    560
+   ],
+   "flags": {},
+   "order": 11,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "clip",
+     "locked": null,
+     "name": "clip",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "CLIP",
+     "pos": null,
+     "link": 1
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "vae",
+     "locked": null,
+     "name": "vae",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "VAE",
+     "pos": null,
+     "link": 2
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "audio_vae",
+     "locked": null,
+     "name": "audio_vae",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "VAE",
+     "pos": null,
+     "link": 3
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_image_0",
+     "locked": null,
+     "name": "ref_images.ref_image_0",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "IMAGE",
+     "pos": null,
+     "link": 4
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_image_1",
+     "locked": null,
+     "name": "ref_images.ref_image_1",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "IMAGE",
+     "pos": null,
+     "link": 5
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_image_2",
+     "locked": null,
+     "name": "ref_images.ref_image_2",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "IMAGE",
+     "pos": null,
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_video_0",
+     "locked": null,
+     "name": "ref_videos.ref_video_0",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "IMAGE",
+     "pos": null,
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_video_audio_0",
+     "locked": null,
+     "name": "ref_video_audios.ref_video_audio_0",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "AUDIO",
+     "pos": null,
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_audio_0",
+     "locked": null,
+     "name": "ref_audios.ref_audio_0",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "AUDIO",
+     "pos": null,
+     "link": 6
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_audio_1",
+     "locked": null,
+     "name": "ref_audios.ref_audio_1",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "AUDIO",
+     "pos": null,
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "prompt",
+     "locked": null,
+     "name": "prompt",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "STRING",
+     "widget": {
+      "name": "prompt"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "width",
+     "locked": null,
+     "name": "width",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "INT",
+     "widget": {
+      "name": "width"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "height",
+     "locked": null,
+     "name": "height",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "INT",
+     "widget": {
+      "name": "height"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "length",
+     "locked": null,
+     "name": "length",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "INT",
+     "widget": {
+      "name": "length"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "ref_image_size",
+     "locked": null,
+     "name": "ref_image_size",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "ref_image_size"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "positive",
+     "locked": null,
+     "name": "positive",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "CONDITIONING",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      9
+     ]
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "LATENT",
+     "locked": null,
+     "name": "LATENT",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "LATENT",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      14
+     ]
+    }
+   ],
+   "title": "参考图 + 歌声 + 提示词（音画同步）",
+   "properties": {
+    "Node name for S&R": "MiniMaxH3ReferenceToVideo"
+   },
+   "widgets_values": [
+    "Use <Picture 1> as the exact face, moustache, long chin beard and tall black two-tier square scholar hat of the man. <Picture 2> shows the first frame: him on a concert stage in a light cream wide-sleeved robe with broad dark brown borders and a black silk sash, holding a black wireless handheld microphone just below his chin, never covering his mouth. Keep the same stage, costume, framing and light as <Picture 2>. His free hand moves only now and then, each time a different small shape, never pointing, never waving above his shoulder. His tall black hat keeps exactly the shape and look it has in the first frame, from the first frame to the last. He sings to the audience, bright and eager, like calling an old friend out to see the moon: on 「怀民，开门」 his free hand rises to chest height, fingers loosely curled with gaps between them, and he taps twice in the air with his bent knuckles, a small, light movement of the wrist, like knocking softly on a wooden door; on 「月亮都爬上墙」 he opens the hand, palm up, and shows the moon on the screen behind him; on 「再不出来」 he leans in with raised eyebrows and a grin and beckons with the open hand, fingers waving towards himself; on 「好景可不等人赏」 the open hand comes down and rests at his side. The big screen behind him keeps exactly the picture it shows in the first frame, the full moon over the river at night, from the first frame to the last. One continuous shot: the camera trucks slowly sideways at the same distance; it does not push in. The shot never comes closer than it starts; no close-up of the face.  His lips follow every word of the vocal in <Audio 1>, press fully together on every M, B and P sound, on 民, 门, 爬 and 不, and open on the vowels. The words are: 怀民，开门！月亮都爬上墙，再不出来，好景可不等人赏。 Use <Audio 1> exactly as it is as the sound of the shot, no other sound, no subtitles or captions. ",
+    1344,
+    768,
+    243,
+    "match"
+   ],
+   "widgets_values_named": {
+    "prompt": "Use <Picture 1> as the exact face, moustache, long chin beard and tall black two-tier square scholar hat of the man. <Picture 2> shows the first frame: him on a concert stage in a light cream wide-sleeved robe with broad dark brown borders and a black silk sash, holding a black wireless handheld microphone just below his chin, never covering his mouth. Keep the same stage, costume, framing and light as <Picture 2>. His free hand moves only now and then, each time a different small shape, never pointing, never waving above his shoulder. His tall black hat keeps exactly the shape and look it has in the first frame, from the first frame to the last. He sings to the audience, bright and eager, like calling an old friend out to see the moon: on 「怀民，开门」 his free hand rises to chest height, fingers loosely curled with gaps between them, and he taps twice in the air with his bent knuckles, a small, light movement of the wrist, like knocking softly on a wooden door; on 「月亮都爬上墙」 he opens the hand, palm up, and shows the moon on the screen behind him; on 「再不出来」 he leans in with raised eyebrows and a grin and beckons with the open hand, fingers waving towards himself; on 「好景可不等人赏」 the open hand comes down and rests at his side. The big screen behind him keeps exactly the picture it shows in the first frame, the full moon over the river at night, from the first frame to the last. One continuous shot: the camera trucks slowly sideways at the same distance; it does not push in. The shot never comes closer than it starts; no close-up of the face.  His lips follow every word of the vocal in <Audio 1>, press fully together on every M, B and P sound, on 民, 门, 爬 and 不, and open on the vowels. The words are: 怀民，开门！月亮都爬上墙，再不出来，好景可不等人赏。 Use <Audio 1> exactly as it is as the sound of the shot, no other sound, no subtitles or captions. ",
+    "width": 1344,
+    "height": 768,
+    "length": 243,
+    "ref_image_size": "match"
+   }
+  },
+  {
+   "id": 6,
+   "type": "HyperFlowSigmas",
+   "pos": [
+    1570,
+    520
+   ],
+   "size": [
+    340,
+    58
+   ],
+   "flags": {},
+   "order": 10,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "model",
+     "locked": null,
+     "name": "model",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "MODEL",
+     "pos": null,
+     "link": 7
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "steps",
+     "locked": null,
+     "name": "steps",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "INT",
+     "widget": {
+      "name": "steps"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "SIGMAS",
+     "locked": null,
+     "name": "SIGMAS",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "SIGMAS",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      13
+     ]
+    }
+   ],
+   "title": "步数：6 步",
+   "properties": {
+    "Node name for S&R": "HyperFlowSigmas"
+   },
+   "widgets_values": [
+    6
+   ],
+   "widgets_values_named": {
+    "steps": 6
+   }
+  },
+  {
+   "id": 7,
+   "type": "KSamplerSelect",
+   "pos": [
+    1570,
+    402
+   ],
+   "size": [
+    340,
+    58
+   ],
+   "flags": {},
+   "order": 4,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "sampler_name",
+     "locked": null,
+     "name": "sampler_name",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "sampler_name"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "SAMPLER",
+     "locked": null,
+     "name": "SAMPLER",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "SAMPLER",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      12
+     ]
+    }
+   ],
+   "title": "采样器",
+   "properties": {
+    "Node name for S&R": "KSamplerSelect"
+   },
+   "widgets_values": [
+    "euler"
+   ],
+   "widgets_values_named": {
+    "sampler_name": "euler"
+   }
+  },
+  {
+   "id": 8,
+   "type": "RandomNoise",
+   "pos": [
+    1570,
+    260
+   ],
+   "size": [
+    340,
+    82
+   ],
+   "flags": {},
+   "order": 5,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "noise_seed",
+     "locked": null,
+     "name": "noise_seed",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "INT",
+     "widget": {
+      "name": "noise_seed"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "NOISE",
+     "locked": null,
+     "name": "NOISE",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "NOISE",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      10
+     ]
+    }
+   ],
+   "title": "种子",
+   "properties": {
+    "Node name for S&R": "RandomNoise"
+   },
+   "widgets_values": [
+    1,
+    "fixed"
+   ],
+   "widgets_values_named": {
+    "noise_seed": 1,
+    "control_after_generate": "fixed"
+   }
+  },
+  {
+   "id": 9,
+   "type": "BasicGuider",
+   "pos": [
+    1570,
+    638
+   ],
+   "size": [
+    340,
+    46
+   ],
+   "flags": {},
+   "order": 12,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "model",
+     "locked": null,
+     "name": "model",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "MODEL",
+     "pos": null,
+     "link": 8
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "conditioning",
+     "locked": null,
+     "name": "conditioning",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "CONDITIONING",
+     "pos": null,
+     "link": 9
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "GUIDER",
+     "locked": null,
+     "name": "GUIDER",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "GUIDER",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      11
+     ]
+    }
+   ],
+   "title": "引导",
+   "properties": {
+    "Node name for S&R": "BasicGuider"
+   }
+  },
+  {
+   "id": 11,
+   "type": "SamplerCustomAdvanced",
+   "pos": [
+    2000,
+    260
+   ],
+   "size": [
+    340,
+    106
+   ],
+   "flags": {},
+   "order": 13,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "noise",
+     "locked": null,
+     "name": "noise",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "NOISE",
+     "pos": null,
+     "link": 10
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "guider",
+     "locked": null,
+     "name": "guider",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "GUIDER",
+     "pos": null,
+     "link": 11
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "sampler",
+     "locked": null,
+     "name": "sampler",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "SAMPLER",
+     "pos": null,
+     "link": 12
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "sigmas",
+     "locked": null,
+     "name": "sigmas",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "SIGMAS",
+     "pos": null,
+     "link": 13
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "latent_image",
+     "locked": null,
+     "name": "latent_image",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "LATENT",
+     "pos": null,
+     "link": 14
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "output",
+     "locked": null,
+     "name": "output",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "LATENT",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      15,
+      17
+     ]
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "denoised_output",
+     "locked": null,
+     "name": "denoised_output",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "LATENT",
+     "pos": null,
+     "slot_index": null,
+     "links": null
+    }
+   ],
+   "title": "生成",
+   "properties": {
+    "Node name for S&R": "SamplerCustomAdvanced"
+   }
+  },
+  {
+   "id": 12,
+   "type": "VAEDecode",
+   "pos": [
+    2430,
+    260
+   ],
+   "size": [
+    340,
+    46
+   ],
+   "flags": {},
+   "order": 14,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "samples",
+     "locked": null,
+     "name": "samples",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "LATENT",
+     "pos": null,
+     "link": 15
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "vae",
+     "locked": null,
+     "name": "vae",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "VAE",
+     "pos": null,
+     "link": 16
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "IMAGE",
+     "locked": null,
+     "name": "IMAGE",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "IMAGE",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      19
+     ]
+    }
+   ],
+   "title": "解码画面",
+   "properties": {
+    "Node name for S&R": "VAEDecode"
+   }
+  },
+  {
+   "id": 13,
+   "type": "VAEDecodeAudio",
+   "pos": [
+    2430,
+    366
+   ],
+   "size": [
+    340,
+    46
+   ],
+   "flags": {},
+   "order": 15,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "samples",
+     "locked": null,
+     "name": "samples",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "LATENT",
+     "pos": null,
+     "link": 17
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "vae",
+     "locked": null,
+     "name": "vae",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "VAE",
+     "pos": null,
+     "link": 18
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "AUDIO",
+     "locked": null,
+     "name": "AUDIO",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "AUDIO",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      20
+     ]
+    }
+   ],
+   "title": "解码声音",
+   "properties": {
+    "Node name for S&R": "VAEDecodeAudio"
+   }
+  },
+  {
+   "id": 14,
+   "type": "CreateVideo",
+   "pos": [
+    2860,
+    260
+   ],
+   "size": [
+    340,
+    174
+   ],
+   "flags": {},
+   "order": 16,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "images",
+     "locked": null,
+     "name": "images",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "IMAGE",
+     "pos": null,
+     "link": 19
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "audio",
+     "locked": null,
+     "name": "audio",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "AUDIO",
+     "pos": null,
+     "link": 20
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "fps",
+     "locked": null,
+     "name": "fps",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "FLOAT",
+     "widget": {
+      "name": "fps"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "bit_depth",
+     "locked": null,
+     "name": "bit_depth",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "bit_depth"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "color_space",
+     "locked": null,
+     "name": "color_space",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "color_space"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "chroma_subsampling",
+     "locked": null,
+     "name": "chroma_subsampling",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "chroma_subsampling"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "codec",
+     "locked": null,
+     "name": "codec",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "COMBO",
+     "widget": {
+      "name": "codec"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "VIDEO",
+     "locked": null,
+     "name": "VIDEO",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "VIDEO",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      21
+     ]
+    }
+   ],
+   "title": "合成视频",
+   "properties": {
+    "Node name for S&R": "CreateVideo"
+   },
+   "widgets_values": [
+    24,
+    "auto",
+    "sRGB",
+    "auto",
+    "none"
+   ],
+   "widgets_values_named": {
+    "fps": 24,
+    "bit_depth": "auto",
+    "color_space": "sRGB",
+    "chroma_subsampling": "auto",
+    "codec": "none"
+   }
+  },
+  {
+   "id": 15,
+   "type": "SaveVideo",
+   "pos": [
+    2860,
+    494
+   ],
+   "size": [
+    340,
+    106
+   ],
+   "flags": {},
+   "order": 17,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "video",
+     "locked": null,
+     "name": "video",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "VIDEO",
+     "pos": null,
+     "link": 21
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "filename_prefix",
+     "locked": null,
+     "name": "filename_prefix",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "STRING",
+     "widget": {
+      "name": "filename_prefix"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "format",
+     "locked": null,
+     "name": "format",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "codec",
+     "locked": null,
+     "name": "format.codec",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "format.codec"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "codec",
+     "locked": null,
+     "name": "codec",
+     "nameLocked": null,
+     "removable": null,
+     "shape": 7,
+     "type": "COMFY_DYNAMICCOMBO_V3",
+     "widget": {
+      "name": "codec"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "video",
+     "locked": null,
+     "name": "video",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "VIDEO",
+     "pos": null,
+     "slot_index": null,
+     "links": null
+    }
+   ],
+   "title": "保存视频",
+   "properties": {},
+   "widgets_values": [
+    "h3flash/singing",
+    "mp4",
+    "auto",
+    "auto"
+   ],
+   "widgets_values_named": {
+    "filename_prefix": "h3flash/singing",
+    "format": "mp4",
+    "format.codec": "auto",
+    "codec": "auto"
+   }
+  },
+  {
+   "id": 21,
+   "type": "LoadImage",
+   "pos": [
+    60,
+    260
+   ],
+   "size": [
+    340,
+    380
+   ],
+   "flags": {},
+   "order": 6,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "image",
+     "locked": null,
+     "name": "image",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "choose file to upload",
+     "locked": null,
+     "name": "upload",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "IMAGE",
+     "locked": null,
+     "name": "IMAGE",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "IMAGE",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      4
+     ]
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "MASK",
+     "locked": null,
+     "name": "MASK",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "MASK",
+     "pos": null,
+     "slot_index": null,
+     "links": null
+    }
+   ],
+   "title": "Picture 1 · 脸部特写",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "singer_face.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "singer_face.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 22,
+   "type": "LoadImage",
+   "pos": [
+    60,
+    700
+   ],
+   "size": [
+    340,
+    380
+   ],
+   "flags": {},
+   "order": 7,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "image",
+     "locked": null,
+     "name": "image",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "image"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "choose file to upload",
+     "locked": null,
+     "name": "upload",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "IMAGEUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "IMAGE",
+     "locked": null,
+     "name": "IMAGE",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "IMAGE",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      5
+     ]
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "MASK",
+     "locked": null,
+     "name": "MASK",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "MASK",
+     "pos": null,
+     "slot_index": null,
+     "links": null
+    }
+   ],
+   "title": "Picture 2 · 这个镜头的第一帧",
+   "properties": {
+    "Node name for S&R": "LoadImage"
+   },
+   "widgets_values": [
+    "first_frame.png",
+    "image"
+   ],
+   "widgets_values_named": {
+    "image": "first_frame.png",
+    "upload": "image"
+   }
+  },
+  {
+   "id": 23,
+   "type": "LoadAudio",
+   "pos": [
+    60,
+    1140
+   ],
+   "size": [
+    340,
+    136
+   ],
+   "flags": {},
+   "order": 8,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "audio",
+     "locked": null,
+     "name": "audio",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "COMBO",
+     "widget": {
+      "name": "audio"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "audioUI",
+     "locked": null,
+     "name": "audioUI",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "AUDIO_UI",
+     "widget": {
+      "name": "audioUI"
+     },
+     "link": null
+    },
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "choose file to upload",
+     "locked": null,
+     "name": "upload",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "AUDIOUPLOAD",
+     "widget": {
+      "name": "upload"
+     },
+     "link": null
+    }
+   ],
+   "outputs": [
+    {
+     "color_off": null,
+     "color_on": null,
+     "dir": null,
+     "label": null,
+     "localized_name": "AUDIO",
+     "locked": null,
+     "name": "AUDIO",
+     "nameLocked": null,
+     "removable": null,
+     "shape": null,
+     "type": "AUDIO",
+     "pos": null,
+     "slot_index": null,
+     "links": [
+      6
+     ]
+    }
+   ],
+   "title": "Audio 1 · 这几句的歌声",
+   "properties": {
+    "Node name for S&R": "LoadAudio"
+   },
+   "widgets_values": [
+    "song_slice.wav",
+    ""
+   ],
+   "widgets_values_named": {
+    "audio": "song_slice.wav",
+    "upload": ""
+   }
+  },
+  {
+   "id": 24,
+   "type": "Note",
+   "pos": [
+    60,
+    -40
+   ],
+   "size": [
+    1100,
+    250
+   ],
+   "flags": {},
+   "order": 9,
+   "mode": 0,
+   "showAdvanced": null,
+   "inputs": [],
+   "outputs": [],
+   "title": "说明",
+   "properties": {},
+   "widgets_values": [
+    "HyperFlow H3 Flash：图 + 音频生视频（H3 的压缩版，24G 显卡能跑）\n\n· 需要先装官方节点包：在 ComfyUI 的节点管理器里搜 HyperFlow，安装 ComfyUI-HyperFlow-Flash。\n· 参数用默认的：6 步，CFG 1，不挂加速 LoRA。\n· Picture 1 放脸部特写，Picture 2 放这个镜头的第一帧（先用 H3-Image 画好），Audio 1 放这几句的歌声。\n· 帧数要是 17 的倍数加 5（243 帧约 10 秒），歌声按这条镜头要唱的几句裁出来。\n· 外景不唱歌：去掉 Audio 1，提示词里写他不说话。\n· 提示词模板见 GitHub：写清楚哪张图管什么、这几句的动作和情绪、镜头怎么动。"
+   ],
+   "widgets_values_named": {
+    "text": "HyperFlow H3 Flash：图 + 音频生视频（H3 的压缩版，24G 显卡能跑）\n\n· 需要先装官方节点包：在 ComfyUI 的节点管理器里搜 HyperFlow，安装 ComfyUI-HyperFlow-Flash。\n· 参数用默认的：6 步，CFG 1，不挂加速 LoRA。\n· Picture 1 放脸部特写，Picture 2 放这个镜头的第一帧（先用 H3-Image 画好），Audio 1 放这几句的歌声。\n· 帧数要是 17 的倍数加 5（243 帧约 10 秒），歌声按这条镜头要唱的几句裁出来。\n· 外景不唱歌：去掉 Audio 1，提示词里写他不说话。\n· 提示词模板见 GitHub：写清楚哪张图管什么、这几句的动作和情绪、镜头怎么动。"
+   },
+   "color": "#432",
+   "bgcolor": "#653"
+  }
+ ],
+ "links": [
+  [
+   1,
+   2,
+   0,
+   5,
+   0,
+   "CLIP"
+  ],
+  [
+   2,
+   3,
+   0,
+   5,
+   1,
+   "VAE"
+  ],
+  [
+   3,
+   4,
+   0,
+   5,
+   2,
+   "VAE"
+  ],
+  [
+   4,
+   21,
+   0,
+   5,
+   3,
+   "IMAGE"
+  ],
+  [
+   5,
+   22,
+   0,
+   5,
+   4,
+   "IMAGE"
+  ],
+  [
+   6,
+   23,
+   0,
+   5,
+   8,
+   "AUDIO"
+  ],
+  [
+   7,
+   1,
+   0,
+   6,
+   0,
+   "MODEL"
+  ],
+  [
+   8,
+   1,
+   0,
+   9,
+   0,
+   "MODEL"
+  ],
+  [
+   9,
+   5,
+   0,
+   9,
+   1,
+   "CONDITIONING"
+  ],
+  [
+   10,
+   8,
+   0,
+   11,
+   0,
+   "NOISE"
+  ],
+  [
+   11,
+   9,
+   0,
+   11,
+   1,
+   "GUIDER"
+  ],
+  [
+   12,
+   7,
+   0,
+   11,
+   2,
+   "SAMPLER"
+  ],
+  [
+   13,
+   6,
+   0,
+   11,
+   3,
+   "SIGMAS"
+  ],
+  [
+   14,
+   5,
+   1,
+   11,
+   4,
+   "LATENT"
+  ],
+  [
+   15,
+   11,
+   0,
+   12,
+   0,
+   "LATENT"
+  ],
+  [
+   16,
+   3,
+   0,
+   12,
+   1,
+   "VAE"
+  ],
+  [
+   17,
+   11,
+   0,
+   13,
+   0,
+   "LATENT"
+  ],
+  [
+   18,
+   4,
+   0,
+   13,
+   1,
+   "VAE"
+  ],
+  [
+   19,
+   12,
+   0,
+   14,
+   0,
+   "IMAGE"
+  ],
+  [
+   20,
+   13,
+   0,
+   14,
+   1,
+   "AUDIO"
+  ],
+  [
+   21,
+   14,
+   0,
+   15,
+   0,
+   "VIDEO"
+  ]
+ ],
+ "floatingLinks": null,
+ "groups": [],
+ "definitions": null,
+ "config": {},
+ "extra": {
+  "ds": {
+   "scale": 0.9,
+   "offset": [
+    416,
+    110
+   ]
+  },
+  "reroutes": null
+ },
+ "version": 0.4
+}
